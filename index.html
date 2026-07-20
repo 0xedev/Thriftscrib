@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ibukun Victoria — Thrift Business Starter Class & Wholesale Bales</title>
+<meta name="description" content="Learn how to start a profitable thrift business with Ibukun Victoria. ₦10,000 recorded starter class, wholesale bales, and 1:1 mentorship — trusted by hundreds of students.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ibukun Victoria — Thrift Business Starter Class & Wholesale Bales">
+<meta property="og:description" content="Learn how to start a profitable thrift business — ₦10,000 recorded starter class, wholesale bales, and 1:1 mentorship.">
+<meta property="og:image" content="assets/hero.jpg">
+
+<link rel="icon" type="image/png" href="assets/favicon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ruby: #A6222B;
+    --ruby-deep: #7E1A21;
+    --gold: #D4A017;
+    --gold-deep: #B3860F;
+    --gold-ink: #4A3607;
+    --bg: #FAFAF8;
+    --white: #FFFFFF;
+    --ink: #1F2937;
+    --ink-dim: #5B6472;
+    --blush: #F6E4E2;
+    --line: rgba(31,41,55,0.10);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important; scroll-behavior:auto !important;} }
+  h1,h2,h3{ font-family:'Poppins', sans-serif; font-weight:700; color:var(--ink); }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 28px; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+
+  /* Header */
+  .site-header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,250,248,0.94);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-inner{
+    max-width:1120px; margin:0 auto; padding:12px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:20px;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .brand img{ height:40px; width:auto; }
+  .site-nav{ display:flex; gap:28px; font-size:14px; font-weight:500; color:var(--ink-dim); }
+  .site-nav a{ text-decoration:none; transition:color 0.15s ease; }
+  .site-nav a:hover{ color:var(--ruby); }
+  .header-cta{
+    background:var(--gold); color:var(--gold-ink); font-weight:700; font-size:14px;
+    padding:10px 20px; border-radius:999px; text-decoration:none;
+    transition:background 0.15s ease, transform 0.15s ease;
+    white-space:nowrap;
+  }
+  .header-cta:hover{ background:var(--gold-deep); transform:translateY(-1px); }
+  @media (max-width:760px){ .site-nav{ display:none; } }
+
+  /* Hero */
+  .hero{ padding:64px 0 64px; }
+  .hero-inner{
+    max-width:1120px; margin:0 auto; padding:0 28px;
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;
+  }
+  .eyebrow{
+    font-size:13px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ruby); margin-bottom:16px;
+  }
+  .eyebrow.center{ text-align:center; }
+  .hero h1{
+    font-size:clamp(34px,4.6vw,50px); line-height:1.12; margin-bottom:22px;
+  }
+  .hero h1 span{ color:var(--ruby); }
+  .hero .lead{ font-size:17px; line-height:1.7; color:var(--ink); margin-bottom:32px; }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-weight:600; font-size:15px; text-decoration:none;
+    padding:14px 26px; border-radius:8px;
+    transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary{ background:var(--ruby); color:var(--white); }
+  .btn-primary:hover{ background:var(--ruby-deep); transform:translateY(-2px); box-shadow:0 10px 22px rgba(166,34,43,0.24); }
+  .btn-outline{ background:transparent; color:var(--ruby); border:1.5px solid var(--ruby); }
+  .btn-outline:hover{ background:var(--blush); transform:translateY(-2px); }
+  /* Gold buttons: dark ink text on gold — white-on-gold measured ~2.4:1 contrast (fails WCAG AA).
+     Dark text on gold measures ~8.8:1 (passes AA/AAA) while keeping the brand color. */
+  .btn-gold{ background:var(--gold); color:var(--gold-ink); width:100%; justify-content:center; }
+  .btn-gold:hover{ background:var(--gold-deep); transform:translateY(-2px); box-shadow:0 10px 22px rgba(212,160,23,0.25); }
+
+  .hero-photo{ position:relative; }
+  .hero-photo .frame{
+    position:relative; border-radius:16px; overflow:hidden;
+    box-shadow:0 24px 48px rgba(31,41,55,0.16);
+    aspect-ratio:4/5;
+  }
+  .hero-photo img{ width:100%; height:100%; object-fit:cover; object-position:top center; }
+  .hero-photo .badge{
+    position:absolute; bottom:-18px; left:-18px;
+    background:var(--white); border-radius:12px; padding:14px 18px;
+    box-shadow:0 12px 28px rgba(31,41,55,0.14);
+    display:flex; align-items:center; gap:10px;
+  }
+  .hero-photo .badge b{ font-family:'Poppins',sans-serif; font-size:20px; color:var(--ruby); display:block; }
+  .hero-photo .badge span{ font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.08em; }
+  @media (max-width:860px){
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero-photo{ order:-1; max-width:340px; margin:0 auto; }
+  }
+
+  /* Why section */
+  .why{ background:var(--blush); padding:56px 0; }
+  .why-inner{ max-width:1120px; margin:0 auto; padding:0 28px; }
+  .why h2{ font-size:26px; text-align:center; margin-bottom:36px; }
+  .why-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+  .why-item{ display:flex; gap:12px; align-items:flex-start; }
+  .why-item .check{
+    flex:0 0 auto; width:26px; height:26px; border-radius:50%;
+    background:var(--ruby); color:var(--white);
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px; font-weight:700;
+  }
+  .why-item p{ font-size:14.5px; line-height:1.55; color:var(--ink); }
+  @media (max-width:860px){ .why-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:520px){ .why-grid{ grid-template-columns:1fr; } }
+
+  /* Services */
+  .services{ padding:80px 0; }
+  .services-inner{ max-width:1120px; margin:0 auto; padding:0 28px; }
+  .services h2{ font-size:30px; text-align:center; margin-bottom:12px; }
+  .services > .services-inner > p.section-sub{
+    text-align:center; color:var(--ink-dim); max-width:520px; margin:0 auto 46px;
+    font-size:15.5px;
+  }
+  .cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+  .card{
+    background:var(--white); border:1px solid var(--line); border-radius:14px;
+    padding:34px 28px; display:flex; flex-direction:column;
+    transition:transform 0.18s ease, box-shadow 0.18s ease;
+    scroll-margin-top:90px;
+  }
+  .card:hover{ transform:translateY(-4px); box-shadow:0 18px 36px rgba(31,41,55,0.10); }
+  .card .icon{
+    width:48px; height:48px; border-radius:12px; background:var(--blush);
+    display:flex; align-items:center; justify-content:center; margin-bottom:20px;
+  }
+  .card .icon svg{ width:24px; height:24px; stroke:var(--ruby); }
+  .card h3{ font-size:19px; margin-bottom:6px; }
+  .card .price{
+    font-family:'JetBrains Mono', monospace; font-size:14px; font-weight:500;
+    color:var(--ruby); margin-bottom:12px;
+  }
+  .card p{ font-size:14.5px; line-height:1.65; color:var(--ink-dim); margin-bottom:20px; }
+  .card p.grow{ flex:1; }
+  .card .gallery{ display:flex; gap:8px; margin-bottom:20px; }
+  .card .gallery img{ width:50%; border-radius:8px; aspect-ratio:1/1; object-fit:cover; }
+  @media (max-width:860px){ .cards{ grid-template-columns:1fr; } }
+
+  /* FAQ */
+  .faq{ background:var(--blush); padding:72px 0; }
+  .faq-inner{ max-width:800px; margin:0 auto; padding:0 28px; }
+  .faq h2{ font-size:28px; text-align:center; margin-bottom:8px; }
+  .faq > .faq-inner > p.section-sub{ text-align:center; color:var(--ink-dim); margin-bottom:36px; font-size:15px; }
+  .faq-item{
+    background:var(--white); border-radius:12px; margin-bottom:12px;
+    border:1px solid var(--line); overflow:hidden;
+  }
+  .faq-item summary{
+    padding:18px 22px; font-family:'Poppins',sans-serif; font-weight:600; font-size:15.5px;
+    cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:16px;
+  }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-item summary::after{
+    content:"+"; font-size:20px; color:var(--ruby); flex:0 0 auto; font-weight:700;
+  }
+  .faq-item[open] summary::after{ content:"–"; }
+  .faq-item p{ padding:0 22px 20px; font-size:14.5px; line-height:1.7; color:var(--ink-dim); }
+  .faq-item summary:focus-visible{ outline:2px solid var(--ruby); outline-offset:-2px; }
+
+  /* Results */
+  .results{ padding:80px 0; }
+  .results-inner{ max-width:1120px; margin:0 auto; padding:0 28px; }
+  .results h2{ font-size:30px; text-align:center; margin-bottom:10px; }
+  .results > .results-inner > p.section-sub{ text-align:center; color:var(--ink-dim); margin-bottom:46px; font-size:15px; }
+
+  .stat-strip{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:52px; }
+  .stat-card{
+    background:var(--white); border-radius:14px; padding:26px 20px; text-align:center;
+    box-shadow:0 8px 20px rgba(31,41,55,0.06); border:1px solid var(--line);
+  }
+  .stat-card b{ font-family:'Poppins',sans-serif; font-size:28px; color:var(--ruby); display:block; margin-bottom:6px; }
+  .stat-card span{ font-size:12.5px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.06em; }
+  @media (max-width:760px){ .stat-strip{ grid-template-columns:1fr; } }
+
+  .shot-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .shot-card{
+    background:var(--white); border-radius:14px; overflow:hidden;
+    box-shadow:0 8px 20px rgba(31,41,55,0.06); border:1px solid var(--line);
+  }
+  .shot-card img{ width:100%; }
+  .shot-card .cap{ padding:12px 16px; font-size:12.5px; color:var(--ink-dim); }
+  .shot-grid .wide{ grid-column:span 2; }
+  @media (max-width:860px){ .shot-grid{ grid-template-columns:1fr 1fr; } .shot-grid .wide{ grid-column:span 2; } }
+  @media (max-width:560px){ .shot-grid{ grid-template-columns:1fr; } .shot-grid .wide{ grid-column:span 1; } }
+
+  /* Footer */
+  footer{ padding:44px 0 40px; text-align:center; color:var(--ink-dim); font-size:13px; }
+  footer .foot-brand{ font-family:'Poppins',sans-serif; font-weight:700; color:var(--ink); margin-bottom:8px; font-size:15px; }
+  footer a{ color:var(--ruby); text-decoration:none; font-weight:600; }
+
+  a:focus-visible, .btn:focus-visible{ outline:2px solid var(--ruby); outline-offset:3px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#top">
+      <img src="assets/logo.jpg" alt="Ibukun Victoria logo">
+    </a>
+    <nav class="site-nav">
+      <a href="#learn">Learn</a>
+      <a href="#wholesale">Wholesale</a>
+      <a href="#mentorship">Mentorship</a>
+      <a href="#results">Results</a>
+    </nav>
+    <a class="header-cta" href="#services">Get Started</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow">Thrift Coach &amp; Supplier</p>
+      <h1>Welcome to <span>Ibukun Victoria</span></h1>
+      <p class="lead">Every successful thrift business begins with the right knowledge. Whether you're taking your first step with ₦20k or looking to scale into full bales, you'll find practical training, trusted sourcing, and a supportive community built to help you run a profitable business with confidence.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#services">Start Your Thrift Journey</a>
+        <a class="btn btn-outline" href="#results">View Success Stories</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <div class="frame">
+        <img src="assets/hero.jpg" alt="Ibukun Victoria, thrift coach and supplier" loading="eager">
+      </div>
+      <div class="badge">
+        <div>
+          <b>6,829+</b>
+          <span>Following the journey</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="why-inner">
+    <h2>Why Learn From Me?</h2>
+    <div class="why-grid">
+      <div class="why-item"><span class="check">✓</span><p>Hundreds of aspiring thrift entrepreneurs trained through my free classes and mentorship</p></div>
+      <div class="why-item"><span class="check">✓</span><p>Thousands of followers learning the business with me every day</p></div>
+      <div class="why-item"><span class="check">✓</span><p>Practical strategies you can apply immediately — no grammar, just what works</p></div>
+      <div class="why-item"><span class="check">✓</span><p>Real experience — I've sold over 1,000 thrift pieces building this business myself</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="services-inner">
+    <p class="eyebrow center">What I Offer</p>
+    <h2>Three ways to work with me</h2>
+    <p class="section-sub">Pick the one that matches where you are right now.</p>
+    <div class="cards">
+
+      <div class="card" id="learn">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </div>
+        <h3>Thrift Business Starter Class</h3>
+        <p class="price mono">₦10,000 · Recorded class, open enrollment — start anytime, no waiting for a cohort</p>
+        <p class="grow">Master the thrift business through step-by-step training designed for beginners and growing entrepreneurs — sourcing, pricing, and selling, explained plainly.</p>
+        <a class="btn btn-gold" href="https://wa.me/2348127317686?text=Hi%20Ibukun%2C%20I%20want%20to%20join%20the%20Beginner%27s%20Thrift%20Class" target="_blank" rel="noopener">Enroll Now →</a>
+      </div>
+
+      <div class="card" id="wholesale">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+        </div>
+        <h3>Buy Wholesale or Bales</h3>
+        <div class="gallery">
+          <img src="assets/wholesale-1.jpg" alt="Stacked thrift bales at the sourcing warehouse" loading="lazy">
+          <img src="assets/wholesale-2.jpg" alt="Warehouse stock of packed thrift bales" loading="lazy">
+        </div>
+        <p class="grow">Access quality thrift products, sorted and priced to move. Grade AA and Grade AB bales available — sold by weight, not piece count, so you know exactly what you're getting.</p>
+        <a class="btn btn-gold" href="https://wa.me/2348127317686?text=Hi%20Ibukun%2C%20I%27m%20interested%20in%20wholesale%20thrift%20%26%20bales" target="_blank" rel="noopener">Shop Wholesale / Bales →</a>
+      </div>
+
+      <div class="card" id="mentorship">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </div>
+        <h3>Mentorship</h3>
+        <p class="grow">Need personalized guidance? Book a one-on-one consultation for tailored advice on your specific business, with real accountability.</p>
+        <a class="btn btn-gold" href="https://selar.com/1hiy2787g3" target="_blank" rel="noopener">Book a Session →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <p class="eyebrow center">Common Questions</p>
+    <h2>Before you start</h2>
+    <p class="section-sub">The questions I get asked most, answered straight.</p>
+
+    <details class="faq-item">
+      <summary>How do I start a thrift business?</summary>
+      <p>The truth: you just have to start. But first, go for knowledge — learn, learn, learn. Understanding sourcing and pricing before you spend a naira is what separates people who build a real business from people who lose money on their first bale.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Can I start with a full bale?</summary>
+      <p>Of course — but you need to be properly trained to understand sorting and pricing of a full bale as a beginner, so you don't run into loss. This is exactly what the starter class walks you through before you commit money to a bale.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Can I start with ₦20,000?</summary>
+      <p>Yes, you can. Items like bralettes, bumshorts, and singlets are advised if your capital is ₦20k — you can easily double your capital with those items.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Can I start with a "boutique standard" bale?</summary>
+      <p>There's no such thing as a "boutique standard" bale — that's not a real grading term. What you actually want to ask for is a Grade AA or Grade AB bale.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>How many pieces are in a bale?</summary>
+      <p>A bale is weighed in kg, not counted in pieces. Depending on how heavy each item is, you can get around 100 pieces in a sweatshirt bale, 200 or more in a top bale, or about 150 in a dress bale.</p>
+    </details>
+
+  </div>
+</section>
+
+<section class="results" id="results">
+  <div class="results-inner">
+    <p class="eyebrow center">Student Results</p>
+    <h2>Real people, real progress</h2>
+    <p class="section-sub">Actual comments and messages from the free Thrift Business Starter Class.</p>
+
+    <div class="stat-strip">
+      <div class="stat-card"><b>94</b><span>Comments on one free class</span></div>
+      <div class="stat-card"><b>187</b><span>Likes on one free class</span></div>
+      <div class="stat-card"><b>70+</b><span>Contacts gained from a single assignment</span></div>
+    </div>
+
+    <div class="shot-grid">
+      <div class="shot-card wide">
+        <img src="assets/testimonial-2.jpg" alt="Instagram comments thanking Ibukun for the thrift business class" loading="lazy">
+        <p class="cap">Comments on the Thrift Business Starter Class post</p>
+      </div>
+      <div class="shot-card">
+        <img src="assets/quote-1.jpg" alt="Student message reporting 70+ contacts gained from the class assignment" loading="lazy">
+        <p class="cap">Assignment follow-up, in the group</p>
+      </div>
+      <div class="shot-card">
+        <img src="assets/quote-2.jpg" alt="Student message about gaining confidence and 10 contacts" loading="lazy">
+        <p class="cap">Assignment follow-up, in the group</p>
+      </div>
+      <div class="shot-card">
+        <img src="assets/testimonial-1.jpg" alt="More Instagram comments on the thrift business class" loading="lazy">
+        <p class="cap">More comments from the class post</p>
+      </div>
+      <div class="shot-card wide">
+        <img src="assets/testimonial-3.jpg" alt="Additional Instagram comments praising the class" loading="lazy">
+        <p class="cap">More comments from the class post</p>
+      </div>
+      <div class="shot-card wide">
+        <img src="assets/testimonial-4.jpg" alt="WhatsApp group messages from students during the free class" loading="lazy">
+        <p class="cap">Live messages in the free class WhatsApp group</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-brand">Ibukun Victoria</div>
+  <p>Thrift Coach &amp; Supplier · <a href="https://www.tiktok.com/@ibukun_victoria" target="_blank" rel="noopener">@ibukun_victoria</a></p>
+</footer>
+
+</body>
+</html>
